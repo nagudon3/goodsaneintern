@@ -23,13 +23,13 @@
 <hr>
 <ol>
 @foreach($tasks as $task)
-<li>{{ $task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-success" href ={{url('/'.$task->id.'/complete')}}>Mark as complete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$task->id.'/delete')}}>Delete</a></li>
+<li>Task {{ $task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-success" href ={{url('/'.$task->id.'/complete')}}>Mark as complete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$task->id.'/delete')}}>Delete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-primary" href ={{url('/'.$task->id.'/edit')}}>Edit</a></li><br>
 @endforeach
 </ol>
 <h4>Completed</h4>
 <ol>
 @foreach($completed_tasks as $c_task)
-<li>Completed {{ $c_task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-warning" href ={{url('/'.$c_task->id.'/incomplete')}}>Mark as incomplete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$c_task->id.'/delete')}}>Delete</a></li>
+<li>Completed {{ $c_task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-warning" href ={{url('/'.$c_task->id.'/incomplete')}}>Mark as incomplete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$c_task->id.'/delete')}}>Delete</a></li><br>
 @endforeach
 </ol>
 </div>
