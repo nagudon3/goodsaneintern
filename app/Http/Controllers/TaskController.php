@@ -51,7 +51,8 @@ public function destroy($id)
 public function edit($id)
 {
     $task = Task::find($id);
-    return view('edit', compact('task', 'id'));
+    $tags = "<a href='www.google.com'>Click Me</a>";
+    return view('edit', compact('task', 'id', 'tags'));
 }
 public function update(Request $request, $id)
 {
@@ -60,4 +61,5 @@ public function update(Request $request, $id)
   $task->save();
   return redirect('tasks');
 }
+
 }

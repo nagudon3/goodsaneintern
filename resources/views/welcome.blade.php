@@ -35,3 +35,9 @@
 </div>
 </div>
 @endsection
+@alert(['type' => 'warning'])
+  Danger!!!
+@endalert
+@alert
+    You can't access this
+@endalert
