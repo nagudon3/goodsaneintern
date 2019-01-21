@@ -31,3 +31,6 @@
 @alert(['type' => 'danger'])
   You are not allowed to access this resource!
 @endalert
+
+<h1>Laravel</h1>
+Hello, @{{ name }}

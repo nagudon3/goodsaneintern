@@ -34,6 +34,7 @@
 </ol>
 </div>
 </div>
+The current UNIX timestamp is {{ time() }}
 @endsection
 @alert(['type' => 'warning'])
   Danger!!!
