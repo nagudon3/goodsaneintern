@@ -51,9 +51,10 @@ public function destroy($id)
 public function edit($id)
 {
     $task = Task::find($id);
-    $tags = "<a href='www.google.com'>Click Me</a>";
+    $tags = "<a href='https://www.google.com'>Click Me</a>";
     return view('edit', compact('task', 'id', 'tags'));
 }
+
 public function update(Request $request, $id)
 {
   $task= Task::find($id);

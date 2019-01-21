@@ -17,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Blade::component('components.alert', 'alert');
+        Blade::directive('datetime', function ($expression){
+            return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
+        });
     }
 
     /**
