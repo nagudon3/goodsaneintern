@@ -6,6 +6,7 @@ class HomeController extends Controller
 {
     public function checkMD()
     {
-        dd('checkMD');
+        dd('lololololol
+        aaaaaaaaaaaaaaaaaas');
     }
 }
