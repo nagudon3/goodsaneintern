@@ -1,6 +1,5 @@
 @extends("layouts.app")
 @section("content")
-
 <div>
 @alert(['type' => 'warning'])
   Danger!!!
@@ -23,7 +22,7 @@
 <div class="col-md-6">
 <h1>Todo List</h1>
 <form method="POST" action={{url('/task')}}>
-{{csrf_field()}}
+@csrf
 <div class="form-group">
 <input type="text" class="form-control" name="task" placeholder="Enter Task">
 </div>
@@ -108,3 +107,17 @@
         $tasks is empty
     @endempty($tasks)
 </div>
+
+<div>
+<!-- how html do it -->
+    <form action="/foo/bar" method="POST">
+        <input type="" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    </form> 
+<!-- simpler way using laravel-->
+    <form action="/foo/bar" method="POST">
+        @method('PUT')
+        @csrf
+    </form>
+</div>
+
