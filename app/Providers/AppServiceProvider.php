@@ -20,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('datetime', function ($expression){
             return "<?php echo ($expression)->format('m/d/Y H:i'); ?>";
         });
+        //share name = nazrul as a global
+        view()->share('name', 'Nazrul');
     }
 
     /**

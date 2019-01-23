@@ -129,3 +129,30 @@ Route::get('json', function() {
         'country' => 'Malaysia']);
     return $a;
 });
+
+//basic view
+Route::get('asassss', function(){
+    return view('tet');
+});
+Route::get('jiji', function(){
+    return view('jitet');
+});
+
+Route::get('passdata', function() {
+    return view('test', ['name' => "nazrul oioioioio"]);
+});
+
+Route::get('koko', function() {
+    return view('helper');
+});
+
+Route::get('iop', function(){
+    $array = array_add(['name' => 'desk'], 'price', 100);
+    $flattened = array_dot($array);
+    return $flattened;
+});
+
+Route::get('ccnc', function() {
+    [$a, $b] = array_divide(['name' => 'Desk']);
+    return [$a, $b];
+});
