@@ -23,4 +23,10 @@
     $first = implode('', $first);
     echo $first. "<br>";
     echo $firstly;
+
+    $ab = ['products' => ['desk' => ['price' => 100 ]]];
+    echo "<br>Product = " . array_forget($ab, 'products.desk');
+    // $ac = array_get($ab, 'products.desk.price');
+    // $ac = implode ('', $ac);
+    // echo $ac;
 ?>

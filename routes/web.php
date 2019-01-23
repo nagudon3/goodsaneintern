@@ -156,3 +156,20 @@ Route::get('ccnc', function() {
     [$a, $b] = array_divide(['name' => 'Desk']);
     return [$a, $b];
 });
+
+Route::get('arrflat', function() {
+    $array = ['name' => 'Joe', 'languages' => ['PHP', 'Ruby']];
+    $flattened = array_flatten($array);
+    return $flattened;
+});
+
+Route::get('tez', function() {
+    $ab = ['products' => ['desk' => ['price' => 100 ]]];
+    $ac = ['product' => ['name' => 'Desk', 'price' => 100]];
+    $b = array_get($ab, 'products.desk.price');
+    $c = array_get($ab, 'products.desk.discount', 0);
+    // $d = array_has($ac, 'product.name');
+    // return $d;
+    return $c;
+    // return $b;
+});
