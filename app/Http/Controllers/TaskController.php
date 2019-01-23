@@ -20,7 +20,7 @@ public function store(Request $request)
     $input = $request->all();
     $task = new Task();
     $task->task = request("task");
-    $task->iscompleted = false;
+    $task->iscompleted = false; 
     $task->save();
     return Redirect::back()->with("message", "Task has been added");
 }
@@ -41,12 +41,12 @@ public function incomplete($id)
     return Redirect::back()->with("message", "Task has been added into incompleted list");
 }
 
-public function destroy($id)
-{
-    $task = Task::find($id);
-    $task->delete();
-    return Redirect::back()->with('message', "Task has been deleted");
-}
+// public function destroy($id)
+// {
+//     $task = Task::find($id);
+//     $task->delete();
+//     return Redirect::back()->with('message', "Task has been deleted");
+// }
 
 public function edit($id)
 {

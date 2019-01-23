@@ -42,7 +42,7 @@
 @endif
 <ol>
 @foreach($tasks as $task)
-<li>Task {{ $task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-success" href ={{url('/'.$task->id.'/complete')}}>Mark as complete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$task->id.'/delete')}}>Delete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-primary" href ={{url('/'.$task->id.'/edit')}}>Edit</a></li><br>
+<li>Task {{ $task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-success" href ={{url('/'.$task->id.'/complete')}}>Mark as complete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$task->id.'/sac')}}>Delete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-primary" href ={{url('/'.$task->id.'/edit')}}>Edit</a></li><br>
 @endforeach
 
 @foreach ($tasks as $task)
@@ -68,7 +68,7 @@
 <h4>Completed</h4>
 <ol>
 @foreach($completed_tasks as $c_task)
-<li>Completed {{ $c_task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-warning" href ={{url('/'.$c_task->id.'/incomplete')}}>Mark as incomplete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$c_task->id.'/delete')}}>Delete</a></li><br>
+<li>Completed {{ $c_task->task }}&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-warning" href ={{url('/'.$c_task->id.'/incomplete')}}>Mark as incomplete</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="btn btn-danger" href ={{url('/'.$c_task->id.'/sac')}}>Delete</a></li><br>
 @endforeach
 @foreach($completed_tasks as $c_task)
 <p>I have completed task {{ $c_task->task }}
@@ -88,7 +88,7 @@
 @endforelse
 </ol>
 
-
+<a href = "register" class="btn btn-success">Register</a>
 </div>
 </div>
 
@@ -111,7 +111,7 @@
 <div>
 <!-- how html do it -->
     <form action="/foo/bar" method="POST">
-        <input type="" name="_method" value="PUT">
+        <input type="hidden" name="_method" value="PUT">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
     </form> 
 <!-- simpler way using laravel-->

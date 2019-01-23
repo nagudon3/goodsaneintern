@@ -3,12 +3,14 @@ use App\Task;
 Route::get('/', "TaskController@index");
 Route::post("/task", "TaskController@store");
 Route::get("/{id}/complete", "TaskController@complete")->name('complete');
-Route::get("/{id}/delete", "TaskController@destroy")->name('delete');
+// Route::get("{id}/delete", "TaskController@destroy")->name('delete');
 Route::get("/{id}/incomplete", "TaskController@incomplete")->name('incomplete');
 Route::get("/{id}/edit", "TaskController@edit")->name('edit');
 Route::get("/{id}/update", "TaskController@update")->name('update');
 Route::resource('tasks','TaskController');
 Route::redirect('/abc', 'rdx', 301);
+Route::get('/{id}/sac', "InvokeableController");
+
 Route::get('rdx', function(){
     return "Hello!";
 });
@@ -91,3 +93,39 @@ Route::fallback(function (){
 $route = Route::current();
 $name = Route::currentRouteName();
 $action = Route::currentRouteAction();
+
+
+//Http request
+Route::get('/foo/bar', "UriController@index");
+
+// Http request retrieving input
+Route::get('/register', function(){
+    return view('register');
+});
+//cookies
+Route::post('abcde', array('uses'=> 'UserRegistration@postRegister'));
+
+Route::get('cookie/set', 'CookieController@setCookie');
+Route::get('cookie/get', 'CookieController@getCookie');
+
+//basic response
+Route::get('basic_reponse', function() {
+    return 'Hello World';
+});
+
+//response with header and cookies
+Route::get('nagudon', function() {
+    return response("Helllooo", 200)->header('Content-Type', 'text/html')
+    ->withcookie('name', 'nssa');
+    // ->header('X-Header-One', 'Header Value')
+    // ->header('X-Header-Two', 'Header Value');
+});
+
+//json response -- use response()->json
+Route::get('json', function() {
+    $a = response()->json([
+        'name' => 'Nazrul Uzu', 
+        'state' => 'Sarawak',
+        'country' => 'Malaysia']);
+    return $a;
+});
