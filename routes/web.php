@@ -168,8 +168,62 @@ Route::get('tez', function() {
     $ac = ['product' => ['name' => 'Desk', 'price' => 100]];
     $b = array_get($ab, 'products.desk.price');
     $c = array_get($ab, 'products.desk.discount', 0);
+    $d = array_set($ab, 'product.desk.price', 200);
+    // return $ab;
+    return $d;
     // $d = array_has($ac, 'product.name');
     // return $d;
-    return $c;
+    // return $c;
     // return $b;
 });
+
+Route::get('arronly', function() {
+    $array = ['name' => 'Desk', 'price' => 100, 'orders' => 10];
+    $slice = array_only($array, ['name', 'price']);
+    return $slice;
+});
+
+//Array pluck- use to retrieve the all the value from given key
+Route::get('arrpluck', function(){
+    $array = [
+        ['developer' => ['id' => 122, 'name' => 'Taylor']],
+        ['developer' => ['id' => 211, 'name' => 'Abigail']],
+    ];
+
+    $names = array_pluck($array, 'developer.name', 'developer.id');
+    return $names;
+});
+
+//Array prepend & array pull
+Route::get('arrprep', function(){
+    // $array = ['one', 'two', 'three', 'four'];
+    // $arrprepend = array_prepend($array, 'satu');
+    // return $arrprepend;
+
+    // $array = ['price' => 100];
+    // $array = array_prepend($array, 'Desk', 'name');
+    // return $array;
+
+    $arrpull = ['name' => 'Desk', 'price' => 100];
+    $namepull = array_pull($arrpull, 'name');
+    return $arrpull;
+});
+
+//Array random
+Route::get('abcdef', function(){
+    // $array = [1,2,3,4,5,6];
+    // $random = array_random($array, 3);
+    // return $random;
+
+    // $array = ['Desk', 'Table', 'Chair'];
+    // $sorted = array_sort($array);
+    // return $sorted;
+
+    $string = 'Laravel';
+    $array = array_wrap($string);
+    return $array;
+});
+
+Route::get('sendb', 'Mailcontroller@basic_email');
+Route::get('sendht', 'Mailcontroller@html_email');
+Route::get('sendat', 'Mailcontroller@attachment_email');
