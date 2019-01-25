@@ -120,3 +120,10 @@
         @csrf
     </form>
 </div>
+
+<!-- <div class='container'>
+    @foreach ($tasks as $t){
+        echo $t->task ."<br />";
+    }
+    @endforeach
+</div> -->

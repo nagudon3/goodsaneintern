@@ -1,5 +1,7 @@
 <?php
 use App\Task;
+use App\flight;
+use Illuminate\Support\Facades\App;
 Route::get('/', "TaskController@index");
 Route::post("/task", "TaskController@store");
 Route::get("/{id}/complete", "TaskController@complete")->name('complete');
@@ -74,9 +76,9 @@ Route::get('api/tasks/{task}', function (App\Task $task) {
     }
 });
 
-Route::get('description/{task}', function (App\Task $task){
-    return "The task ". $task->task . "is created at ". $task->created_at . "<br >";
-});
+// Route::get('description/{task}', function (App\Task $task){
+//     return "The task ". $task->task . "is created at ". $task->created_at . "<br >";
+// });
 
 Route::fallback(function (){
     return "404 can't be here";
@@ -227,3 +229,45 @@ Route::get('abcdef', function(){
 Route::get('sendb', 'Mailcontroller@basic_email');
 Route::get('sendht', 'Mailcontroller@html_email');
 Route::get('sendat', 'Mailcontroller@attachment_email');
+
+Route::get('tasklist', function() {
+    $tasks = Task::all();
+    foreach ($tasks as $task){
+        echo $task->task;
+        echo "<br>" ;
+    }
+});
+Route::get('gh', function (){
+    $flights = Flight::where('name', 'sas')
+        ->orderBy('created_at', 'asc')
+        ->take(10)
+        ->get();
+    return $flights;
+});
+
+Route::get('test', function(){
+    $flights = Flight::where('category', 1)->first();
+    $flights->name = 'sasa';
+    $flights->refresh();
+    return $flights->name;
+    // // $flights = Flight::all();
+    // // $flights = $flights->reject(function ($flights) {
+    // // return $flights->cancelled;
+    // });
+});
+
+Route::get('test2', function(){
+    $flight = Flight::find([1, 2, 3]); //find by primary key
+    //$flight = Flight::where('category', 2)->first(); //find the first model that match the query constraints
+    $count = Flight::where('category', 2)->count();
+    $max = Flight::where('category', 1)->max('id');
+    // return $flight;
+    return $max;
+    // return $count;
+});
+
+Route::get('insert', 'super@insertform');
+Route::post('/create', 'super@insert');
+Route::get('update', 'super@update');
+
+Route::get('display', 'super@index');
