@@ -81,7 +81,7 @@ Route::get('api/tasks/{task}', function (App\Task $task) {
 // });
 
 Route::fallback(function (){
-    return "404 can't be here";
+    return "Nothing to show";
     
 });
 
@@ -265,9 +265,25 @@ Route::get('test2', function(){
     return $max;
     // return $count;
 });
-
+//insert
 Route::get('insert', 'super@insertform');
 Route::post('/create', 'super@insert');
-Route::get('update', 'super@update');
 
+//retrieve
 Route::get('display', 'super@index');
+
+//update
+Route::get('edit', 'super@editinit')->name('edit');
+Route::get('edit/{id}', 'super@show');
+Route::post('edit/{id}', 'super@edit');
+
+//delete
+Route::get('delete/{id}', 'super@delete');
+
+//firstOrCreate
+Route::get('foc', 'super@try');
+
+//delete2 test
+Route::get('ggwp', 'super@delete2');
+
+Route::get('restore', 'super@restore')->name('restore');

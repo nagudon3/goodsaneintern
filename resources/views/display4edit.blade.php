@@ -15,12 +15,14 @@
         <td>ID</td>
         <td>Name</td>
         <td>Edit</td>
+        <td>Delete</td>
     </tr>
     @foreach ($race as $ras)
     <tr>
         <td>{{ $ras->id }}</td>
         <td>{{ $ras->name }}</td>
-        <td><a href = 'edit/{{ $user->id }}'>Edit</a></td>
+        <td><a href = 'edit/{{ $ras->id }}'>Edit</a></td>
+        <td><a href = 'delete/{{ $ras->id }}'>Delete</a></td>
     </tr>
     @endforeach
     </table>

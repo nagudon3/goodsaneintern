@@ -18,6 +18,9 @@ class CreateRacesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        Schema::table('races', function (Blueprint $table){
+            $table->softDeletes();
+        });
     }
 
     /**

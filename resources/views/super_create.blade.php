@@ -10,7 +10,7 @@
 </head>
 <body>
     <form action = "create" method = "post">
-    <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
+    @csrf
     <table>
         <tr>
             <td>Name</td>

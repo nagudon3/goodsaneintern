@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DummyFullModelClass;
 use App\lain;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -67,21 +68,26 @@ class super extends Controller
      * @return \Illuminate\Http\Response
      */
     public function editinit() {
+        $race = race::all();
         $name =DB::select('select * from races');
         return view('display4edit', ['race'=>$race]);
     }
     public function show($id) {
-        $name = DB::select('select * from races where id = ?', [$id]);
+        $race = race::find($id);
         return view('update', ['race'=>$race]);
     }
     public function edit(Request $request, $id)
     {
+        $race = race::all();
+        $race = race::find($id);
         $name = $request->input('name');
-        DB::update('update races set name = ? where id = ?', [$name,$id]);
-        echo "Record updated successfully.<br/>";
-        echo '<a href = "/edit">Click here</a> to go back.';
+        $race->name = $name;
+        $race->save();
+        // DB::update('update races set name = ? where id = ?', [$name, $id]);
+        echo '<a href = "'.route('edit').'">Click here</a> to go back.';
     }
 
+    
     /**
      * Update the specified resource in storage.
      *
@@ -113,9 +119,39 @@ class super extends Controller
     }
 
     public function insert (Request $request){
-        $name = $request->input('name');
-        DB::insert('insert into races (name) values (?)',[$name]);
+        $race = new race;
+        $race->name = $request->name;
+        $race->save();
+        // $name = $request->input('name');
+        // DB::insert('insert into races (name) values (?)',[$name]);
         echo "Record added!<br/>";
-        echo '<a href = "insert">Click Here</a> to go back or' . '<a href = "update"> Update</a> here.';
+        echo '<a href = "insert">Click Here</a> to go back or ' . '<a href = "edit">Update</a> here.';
     }
-}
+
+    public function delete ($id){
+        $race = race::find($id);
+        $delete = $race->delete();
+        echo 'Record deleted';
+        echo 'Click here to go<a href = "'.route('edit').'"> back.</a>or <a href="'.route('restore').'">Restore</a>';
+    }
+
+    public function try (){
+        // $race = race::firstorcreate(['name' => 'eira']);
+        // echo "Success";
+        // return redirect('insert');
+
+        $race = race::updateOrCreate(
+            ['id' => '35'],
+            ['name' => 'shanty']
+        );
+        echo "Success";
+    }
+
+    public function delete2 () {
+        $del = race::where('id', 21)->delete();
+        echo "deleted!";
+    }
+
+//     public function restore (){
+//     }
+// }
