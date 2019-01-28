@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
+use App\Observers\UserObserver;
+use App\race;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
         });
         //share name = nazrul as a global
         view()->share('name', 'Nazrul');
+        race::observe(studObserver::class);
     }
 
     /**

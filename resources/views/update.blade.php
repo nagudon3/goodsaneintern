@@ -12,6 +12,19 @@
             <td>
                 <input type = 'text' name ='name' value = '{{$race->name}}' />
             </td>
+            <td>
+                <select name='gender'>
+                    <option value= 0 >Male</option>
+                    <option value = 1>Female</option>
+                    <option value = 3>Confuse</option>
+                </select>
+            </td>
+            <tr>
+            <td>Age</td>
+            <td>
+                <input type = 'text' name ='age' value = '{{$race->age}}' />
+            </td>
+            </tr>
             </tr>
             <tr>
                 <td colspan = '2'>

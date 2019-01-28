@@ -1,6 +1,12 @@
 <?php
 use App\Task;
 use App\flight;
+use App\race;
+use App\User;
+use App\phone;
+use App\post;
+use App\comment;
+
 use Illuminate\Support\Facades\App;
 Route::get('/', "TaskController@index");
 Route::post("/task", "TaskController@store");
@@ -286,4 +292,39 @@ Route::get('foc', 'super@try');
 //delete2 test
 Route::get('ggwp', 'super@delete2');
 
-Route::get('restore', 'super@restore')->name('restore');
+// Route::get('restore/{id}', 'super@restore')->name('restore');
+
+Route::get('restoreall', 'super@restoreall');
+
+//force delete route
+Route::get('fdel/{id}', 'super@fdel');
+
+Route::get('testscope', function(){
+    $gender = race::gender()->orderBy('created_at')->get();
+    return $gender;
+});
+
+Route::get('dynamicscope', function(){
+    $dynamic = race::age(8)->get();
+    return $dynamic;
+});
+
+Route::get('belongto', function(){
+    $phone = User::find(1)->phone;
+    dd($phone);
+});
+
+Route::get('hasone', function(){
+    $user = phone::find(1)->user;
+    dd($user);
+});
+
+Route::get('yui', 'relationshipController@createRecord');
+Route::get('yuiu', 'relationshipController@createRecord2');
+
+Route::get('tt', function() {
+    $post = Post::find(1);
+    $comments = new Comment;
+    $comments->comment = "Hello werld";
+    $post = $post->comment()->save($comments);
+});

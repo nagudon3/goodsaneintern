@@ -81,10 +81,14 @@ class super extends Controller
         $race = race::all();
         $race = race::find($id);
         $name = $request->input('name');
+        $gender = $request->input('gender');
+        $age = $request->input('age');
+        $race->age = $age;
         $race->name = $name;
+        $race->gender = $gender;
         $race->save();
         // DB::update('update races set name = ? where id = ?', [$name, $id]);
-        echo '<a href = "'.route('edit').'">Click here</a> to go back.';
+        return redirect ('edit');
     }
 
     
@@ -121,6 +125,8 @@ class super extends Controller
     public function insert (Request $request){
         $race = new race;
         $race->name = $request->name;
+        $race->gender = $request->gender;
+        $race->age = $request->age;
         $race->save();
         // $name = $request->input('name');
         // DB::insert('insert into races (name) values (?)',[$name]);
@@ -128,11 +134,19 @@ class super extends Controller
         echo '<a href = "insert">Click Here</a> to go back or ' . '<a href = "edit">Update</a> here.';
     }
 
+    //test delete
     public function delete ($id){
         $race = race::find($id);
         $delete = $race->delete();
         echo 'Record deleted';
-        echo 'Click here to go<a href = "'.route('edit').'"> back.</a>or <a href="'.route('restore').'">Restore</a>';
+        echo 'Click here to go<a href = "'.route('edit').'"> back.';
+    }
+
+    public function fdel($id){
+        $race = race::find($id);
+        $delete = $race->forceDelete();
+        echo 'Record no longer exist<br />';
+        echo 'Click here to go<a href = "'.route('edit').'"> back.';
     }
 
     public function try (){
@@ -147,11 +161,22 @@ class super extends Controller
         echo "Success";
     }
 
-    public function delete2 () {
-        $del = race::where('id', 21)->delete();
-        echo "deleted!";
-    }
+    // public function delete2 () {
+    //     $del = race::where('id', 21)->delete();
+    //     echo "deleted!";
+    // }
 
-//     public function restore (){
-//     }
-// }
+    // public function restore ($id){
+    //     $race = race::find($id);
+    //     $race = onlyTrashed()
+    //             ->where('id', $id)
+    //             ->get();
+    //     echo 'Restored<br/>';
+    //     echo 'Go <a href="edit">back.</a>';
+    // }
+
+    public function restoreall (){
+        $restoreall = race::withTrashed()->restore();
+        return redirect ('edit');
+    }
+}

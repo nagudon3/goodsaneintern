@@ -17,6 +17,16 @@
             <td><input type='text' name='name' /></td>
         </tr>
         <tr>
+            <td>Age</td>
+            <td><input type='text' name='age' /></td>
+        <tr>
+            <td>
+                <select name="gender">
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                    <option value="3">Confuse</option>
+                </select>
+            </td>
             <td colspan = '2'>
                 <input type='submit' value="Add student"/>
             </td>
